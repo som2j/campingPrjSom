@@ -75,6 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().ignoringAntMatchers("/mail");
 //		http.csrf().ignoringAntMatchers("/chat");
 
+		http.csrf().ignoringAntMatchers("/members/**");
+		
 	}
 	
 	@Override
