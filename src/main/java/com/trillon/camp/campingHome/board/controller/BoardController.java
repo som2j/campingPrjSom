@@ -1,7 +1,9 @@
 package com.trillon.camp.campingHome.board.controller;
 import com.trillon.camp.campingHome.board.dto.BoardForm;
+
 import com.trillon.camp.campingHome.board.service.BoardService;
-import com.trillon.camp.campingHome.file.FileInfo;
+
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,12 +33,14 @@ import java.util.List;
 @Slf4j
 public class BoardController {
 
+
     private final BoardService boardService;
 
     @GetMapping("board/new") // 게시판 등록 폼
     public String newFile(){
         return "/campingHome/board-form";
     }
+
 
     @PostMapping("board/new")// 게시판 등록 버튼을 눌렀을 때 실행되는 메서드
     @ResponseBody
@@ -59,11 +63,9 @@ public class BoardController {
     public String boardDetail(@PathVariable("bdIdx") int bdIdx,Model model) {
         System.out.println("getMapping");
         BoardForm boardForm = boardService.selectBoardByBdIdx(bdIdx);
-        model.addAttribute("board",boardForm);
+        model.addAttribute("board", boardForm);
         return "/campingHome/boardDetail";
     }
-
-
 
 }
 
