@@ -1,91 +1,67 @@
 let classAddEventListener = function(cssSelector, ev){
 	let element = $(cssSelector);
 	for(let i = 0; i < element.length; i++){
-		element[i].addEventListener('click', ev);
+		element
 	}
 }
-
-let matchList = [ "어디로 가고싶나요?", "어떤 캠핑을 하고싶나요?", "원하는 연령층은?"];
-
-let selectMatchList = [
-						["산", "바다"],
-						["오토", "모토", "차박"],
-						["20대", "30대", "40대"]
-					  ];
-let answer = [];
-
-let selectIndex = 0;
 
 let token = document.querySelector("meta[name='_csrf']").content;
 let header = document.querySelector("meta[name='_csrf_header']").content;
 
-let matchFinish = async(answer)=>{
-	let data={
-			place : answer[0],
-			campingWay : answer[1],
-			ageAverage : answer[2]
-	};
+const createBoard = document.getElementById('createBoard');
+
+createBoard.addEventlistener('submit', async (e)=> {
+	e.preventdefault();
 	
 	let sendData = await fetch("http://localhost:8081/comewithme/comeWithMeMatch",{
+	let data = {
+			title : title.value,
+			content : content.value,
+			numOfPerson : numOfPerson.value,
+			place : place.value,
+			campingWay : campingWay.value,
+			ageAverage : ageAverage.value,
+			gender : gender.value
+	}
+	await fetch("http://localhost:8080/comewithme/upload",{
 		method : 'post',
 		headers : {
 			'header' : header,
 			'X-CSRF-Token' : token,
 			'Content-Type' : 'application/json'
 		},
-		redirect : 'follow',
+		//redirect : 'follow',
 		body : JSON.stringify(data)
-		
 	}).then((response)=>{
 		let jsonTest = response.text();
 		console.log(answer);
 		window.location.href = "http://localhost:8081/comewithme/matchFinish?page=1";
+		let jsontest = response.text();
+		window.location.href = "http://localhost:8080/comewithme/comeWithMeList";
 	}).catch((err)=>{
 		alert("삐요삐요 에러발생", err);
 	})
-	
+});
+
+if(title.value == ""){
+	alert("마 제목 입력안하나");
+}else if(conent.value == ""){
+	alert("마 내용 입력안하나");
+}else if(numOfPerson.value == ""){
+	alert("마 인원수 입력안하나");
+}else if(place.value == ""){
+	alert("마 장소 선택 안하나");
+}else if(campingWay.value == ""){
+	alert("마 캠핑 방식 선택 안하나");
+}else if(ageAverage.value == ""){
+	alert("마 연령대 선택 안하나");
+}else if(gender.value == ""){
+	alert("마 성별 선택 안하나");
 }
 
 
-let selectQuestion = () =>{
-	if(selectIndex == 3){
-		matchFinish(answer);
-		return;
-	}
-	
-	matchStart.replaceChildren();
-	let selectIdx = selectIndex;
-	
-	for(let i = 0; i < selectMatchList[selectIndex].length; i++){
-		console.log(selectMatchList);
-		matchQuestion.innerText = matchList[selectIdx];
-		let option = createElement('li', {prop:{className:'option'}});
-		let a = createElement('a', {prop:{className:"button primary small fit", innerText:selectMatchList[selectIndex][i],idx:option}});
-		let br = createElement('br');
-		option.prepend(a);
-		option.prepend(br);
-		option.addEventListener('click', ev =>{
-			answer.push(a.innerText);
-			console.log(answer);
-		})
-		
-		$('.matchStart').append(option);
-	}
-	
-	classAddEventListener('.option', selectQuestion);
-	selectIndex++;
-}
 
-classAddEventListener('.option', selectQuestion);
-selectQuestion();
-
-
-
-
-
-
-
-	//해시태그
+//해시태그
 	$(document).ready(function() {
 		var tag = {};
 		var counter = 0;
