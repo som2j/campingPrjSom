@@ -13,6 +13,7 @@ function sendData(){
 			ageAverage : ageAverage.value,
 			gender : gender.value
 	};
+	console.dir(data);
 	
 	let response = fetch("http://localhost:8080/comewithme/upload",{
 		method : 'post',
