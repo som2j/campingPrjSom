@@ -30,6 +30,8 @@
 		type="button" id="btnClick">로그인</button>
 
 
+	<button class="btn btn-lg btn-primary btn-block btn-signin"
+		type="button" id="btnSign">회원가입</button>
 
 
 	<script>
@@ -345,5 +347,7 @@ pageEncoding="UTF-8"%>
             </form>
            
 
+	
 </body>
+<script defer src="${context}/resources/assets/js/member/login.js"></script>
 </html>
