@@ -3,8 +3,8 @@ let header = document.querySelector("meta[name='_csrf_header']").content;
 
 function sendData(){
 	
-	let sendData = await fetch("http://localhost:8081/comewithme/comeWithMeMatch",{
 	let data = {
+			bdIdx : bdIdx.value,
 			title : title.value,
 			content : content.value,
 			numOfPerson : numOfPerson.value,
@@ -15,23 +15,13 @@ function sendData(){
 	};
 	console.dir(data);
 	
-	let response = fetch("http://localhost:8080/comewithme/upload",{
+	let response = fetch("http://localhost:8080/comewithme/modify",{
 		method : 'post',
 		headers : {
 			'header' : header,
 			'X-CSRF-Token' : token,
 			'Content-Type' : 'application/json'
 		},
-		//redirect : 'follow',
-		body : JSON.stringify(data)
-	}).then((response)=>{
-		let jsonTest = response.text();
-		console.log(answer);
-		window.location.href = "http://localhost:8081/comewithme/matchFinish?page=1";
-		let jsontest = response.text();
-		window.location.href = "http://localhost:8080/comewithme/comeWithMeList";
-	}).catch((err)=>{
-		alert("삐요삐요 에러발생", err);
 		body: JSON.stringify(data)
 	}).then((response) =>{
 		console.log(response);
