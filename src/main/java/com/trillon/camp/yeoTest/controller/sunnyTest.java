@@ -55,5 +55,9 @@ public class sunnyTest {
 	}
 	
 
+	@GetMapping("campingHome/mypage_test")
+	public void mypage_test() {
+		System.out.println("mypage_test.jsp");
+	}
 
 }
