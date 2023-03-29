@@ -61,6 +61,7 @@ public interface BoardRepository {
             ") " +
             "select * from test2 f inner join thumbnail b on f.file_idx = b.poster " +
             "order by gn_idx desc limit #{start}, #{cntPerPage}")
+    @Select("select * from test order by campingIdx desc limit #{start}, #{cntPerPage}")
     List<Board> selectBoardList(Paging paging);
 
 
