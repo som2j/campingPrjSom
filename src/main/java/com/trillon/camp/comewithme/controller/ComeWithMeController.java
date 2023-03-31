@@ -97,6 +97,22 @@ public class ComeWithMeController {
         groupService.insertNewMemberToGroup(member);
 		
 		comeWithMeService.insertBoard(board, files);// 게시글 만들기
+	public String upload(@RequestParam List<MultipartFile> files,
+			ComeWithMeBoard board,
+			HttpSession session) throws UnsupportedEncodingException {
+		System.out.println("upload post : " + board);
+		System.out.println("upload post : " + files);
+		
+		CampingGroup campingGroup = new CampingGroup();
+		campingGroup.setMaxMember(board.getNumOfPerson());
+		campingGroup.setGroupMaster((String)session.getAttribute("loginId"));
+		
+		
+		
+		comeWithMeService.insertBoard(board, files);
+		
+		
+		
 		return "redirect:/comewithme/comeWithMeList";
 	}
 	
@@ -161,6 +177,9 @@ public class ComeWithMeController {
 	public Resource downloadImage(@PathVariable Object fileName,@PathVariable String groupName ,@PathVariable String savePath) throws MalformedURLException {
 		System.out.println("여기 오고 있나요?");
         return new UrlResource("file:" + "C:/Program Files/CODE/storage" + "/" + groupName + "/" + savePath + fileName);
+	@GetMapping("/images/{groupIdx}/{fileName}")
+	public Resource downloadImage(@PathVariable Object fileName, @PathVariable int groupIdx) throws MalformedURLException {
+                return new UrlResource("file:"+"C:/Program Files/CODE/storage/board/2023/3/30/"+ fileName);
 	}
 	
 	
