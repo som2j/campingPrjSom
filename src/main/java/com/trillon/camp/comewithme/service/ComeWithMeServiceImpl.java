@@ -68,7 +68,7 @@ public class ComeWithMeServiceImpl implements ComeWithMeService{
 		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName","board", "groupIdx", boardList.getBdIdx()));
 		System.out.println("duddd" + files);
 		logger.info("groupIdx :" + boardList.getBdIdx());
-		List<FileInfo> files = fileRepository.selectFileWithGroup(Map.of("groupName","board", "groupIdx", 0));
+		List<FileInfo> files = fileRepository.selectFileWithGroup(bdIdx);
 		return Map.of("boardList", boardList, "files", files);
 	}
 
