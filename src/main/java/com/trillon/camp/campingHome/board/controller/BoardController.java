@@ -89,10 +89,10 @@ public class BoardController {
         boardForm.setHashtag(hashtag);
         boardService.insertBoard(boardForm, files);
     public String saveFile(@ModelAttribute BoardForm boardForm,
+                            @RequestParam String itemName,
                             @RequestParam("file") List<MultipartFile> files) throws IOException, ParseException {
-        log.info("boardForm={}",boardForm);
 
-        boardService.insertBoard(boardForm,files);
+        boardService.insertBoard(boardForm,itemName,files);
         
         return "redirect:/campingHome/boards";
     }
@@ -107,6 +107,8 @@ public class BoardController {
     @GetMapping("/board/{bdIdx}") // 게시판 상세페이지 접속
     public String boardDetail(@PathVariable("bdIdx") int bdIdx,Model model) {
         model.addAllAttributes(boardService.selectBoardByBdIdx(bdIdx));
+        Object item = model.getAttribute("item");
+
 
         // 댓글 가져오기
         List<Reply> replies = boardService.selectReplyAll(bdIdx);
