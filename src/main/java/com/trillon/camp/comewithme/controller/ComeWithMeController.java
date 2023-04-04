@@ -183,6 +183,8 @@ public class ComeWithMeController {
 	}
 	
 	
+	
+	
 	@PostMapping("memberInsert")
 	public String memberInsert(ComeWithMeBoard board, HttpSession session) {
 		System.out.println("멤버 추가하기 들어오나요");
