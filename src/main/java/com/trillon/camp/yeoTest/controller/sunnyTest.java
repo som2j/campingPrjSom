@@ -66,6 +66,4 @@ public class sunnyTest {
 		System.out.println("board.jsp");
 	}
 
-
-
 }
