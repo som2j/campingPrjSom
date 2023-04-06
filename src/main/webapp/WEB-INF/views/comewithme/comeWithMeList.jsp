@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/head.jsp"%>
+<%@ include file="/WEB-INF/views/include/head2.jsp"%>
+ 
 <!-- head 설정 -->
 <body class="is-preload">
 
