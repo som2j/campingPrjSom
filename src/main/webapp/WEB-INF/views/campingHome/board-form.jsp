@@ -48,9 +48,11 @@
                             <input type="file" name="file" multiple/>
                         </div>
 
-                        <div class="col-12">
+                        <div class="col-12" id="items">
                             <strong>제품 등록</strong>
-                            <input type="text" name="itemName" multiple/>
+                            <p></p>
+                            <input type="text" id="itemName" name="itemName"/>
+                            <a class="button" id="itemButton" value="아이템 추가"></a>
                         </div>
 
                     <div class="col-12">
@@ -80,7 +82,7 @@
 <!-- Scripts -->
 <%@ include file="/WEB-INF/views/include/commonScripts.jsp" %>
 
-<!--<script src="${context}/resources/assets/js/campingHome/boardForm.js"></script>-->
+<script src="${context}/resources/assets/js/campingHome/boardForm.js"></script>
 
 </body>
 </html>
