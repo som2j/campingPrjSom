@@ -82,11 +82,18 @@ function canPage(){
 
 btnClick.addEventListener('click',e=>{
     PostTest();
+    };
     
-    });
+
+
+btnClick.addEventListener('click',e=>{
+	PostTest();
+
+});
+
 
 btnCan.addEventListener('click',e=>{
     canPage();
     
-    });
+});
     
