@@ -43,6 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
@@ -88,16 +89,17 @@ public class BoardController {
         boardForm.setHashtag(hashtag);
         boardService.insertBoard(boardForm, files);
     public String saveFile(@ModelAttribute BoardForm boardForm,
+    public String saveFile(
+                            @ModelAttribute BoardForm boardForm,
                             @RequestParam("itemName") List<String> item,
                             @RequestParam("file") List<MultipartFile> files) throws IOException, ParseException {
 
         System.out.println(item);
-        System.out.println(boardForm);
-        System.out.println(files);
 
+        item.removeIf(s->s.length() == 0);
+        System.out.println(item);
 
         boardService.insertBoard(boardForm,item,files);
-
         return "redirect:/campingHome/boards";
     }
 
