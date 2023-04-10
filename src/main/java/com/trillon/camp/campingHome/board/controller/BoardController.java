@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.trillon.camp.campingHome.naverShopping.dto.Item;
 import com.trillon.camp.campingHome.naverShopping.service.NaverShoppingSearch;
+import com.trillon.camp.comewithme.dto.ComeWithMeBoard;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
@@ -90,9 +91,9 @@ public class BoardController {
         boardService.insertBoard(boardForm, files);
     public String saveFile(@ModelAttribute BoardForm boardForm,
     public String saveFile(
-                            @ModelAttribute BoardForm boardForm,
-                            @RequestParam("itemName") List<String> item,
-                            @RequestParam("file") List<MultipartFile> files) throws IOException, ParseException {
+            @ModelAttribute BoardForm boardForm,
+            @RequestParam("itemName") List<String> item,
+            @RequestParam("file") List<MultipartFile> files) throws IOException, ParseException {
 
         System.out.println(item);
 
@@ -103,12 +104,31 @@ public class BoardController {
         return "redirect:/campingHome/boards";
     }
 
+    @GetMapping("board/modify") // 게시판 수정 1-1
+    public String modify(int bdIdx, Model model) {
+        System.out.println("get modify: " + bdIdx);
+        model.addAllAttributes(boardService.selectBoardByBdIdx(bdIdx));
+        return "/campingHome/boardForm-modify";
+    }
+
+    @PostMapping("board/modify") // 게시판수정 1-2
+    public String modify(@ModelAttribute BoardForm boardForm) {
+
+        int bdIdx = boardForm.getBdIdx();
+        boardService.updateBoard(boardForm);
+
+        return "redirect:/campingHome/board/"+bdIdx;
+    }
+
+    
     @GetMapping("boards") // 게시판 목록페이지 접속
     public String boards(Model model,@RequestParam(required = false,defaultValue = "1") int page){
       //  model.addAllAttributes(boardService.selectBoardList(page));
         model.addAllAttributes(boardService.selectBoardList(page));
         return "/campingHome/boards";
     }
+
+
 
     @GetMapping("board/{bdIdx}") // 게시판 상세페이지 접속
     public String boardDetail(@PathVariable("bdIdx") int bdIdx,Model model) {
@@ -126,7 +146,7 @@ public class BoardController {
     @PostMapping("board/{bdIdx}")// 게시판에서 쓴 댓글 저장
     @ResponseBody
     public Reply saveReply(@PathVariable int bdIdx, Model model,
-                                @RequestBody Reply reply){
+                           @RequestBody Reply reply){
         reply.setBdIdx(bdIdx);
         boardService.insertReply(reply);
         //List<Reply> replies = boardService.selectReplyAll(bdIdx);
@@ -137,8 +157,15 @@ public class BoardController {
     @ResponseBody
     @GetMapping("/images/{gnIdx}/{fileName}")  // 이미지를 출력해주는 메서드
     public Resource downloadImage(@PathVariable Object fileName,
-                                    @PathVariable int gnIdx) throws MalformedURLException {
-                return new UrlResource("file:"+"C:/campingHome/"+gnIdx+"/"+ fileName);
+                                  @PathVariable int gnIdx) throws MalformedURLException {
+        return new UrlResource("file:"+"C:/campingHome/"+gnIdx+"/"+ fileName);
+    }
+
+    @GetMapping("remove") // 게시판 삭제
+    public String remove(@RequestParam int bdIdx) {
+        System.out.println("remove : " + bdIdx);
+        boardService.deleteBoard(bdIdx);
+        return "redirect:/campingHome/boards";
     }
 
 }
