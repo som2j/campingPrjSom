@@ -4,17 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
-<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
-<style>
-Button {
-  background-color: rgba(222, 118, 119, 50);
-  color: white;
-  border: none;
-  font-color:black;
-  width: 100px;
-  height: 30px;
 <title>일정 등록</title>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}"></meta>
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"></meta>
@@ -120,7 +109,6 @@ button:hover {
 		Allday	  <input type="checkbox" onClick="check(this)" name="allDay" ><br><br>
 	<div id="timeBox">
 		시작 시간 <input type="time" name="timeStart" id="startTime" maxlength="20"><br><br>
-	</div>	
 	</div>
 	<div class="button-container">
 		<button type="button" value="확인" id="btnClick" >확인</button>

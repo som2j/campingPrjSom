@@ -49,13 +49,6 @@ public class sunnyTest {
 		System.out.println("boardDetail.jsp");
 	}
 	
-	@GetMapping("group/newGroupTodo")
-	public void newGroupTodo() {
-		
-	}
-	
-
-	@GetMapping("campingHome/mypage_test")
 	@GetMapping("campingHome/board-form")
 	public void mypage_test() {
 		System.out.println("board-form.jsp");

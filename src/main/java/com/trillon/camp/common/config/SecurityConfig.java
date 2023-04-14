@@ -99,8 +99,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	  .loginPage("/members/login") .usernameParameter("userId")
 
 	 
-	  //.successHandler(authSuccessHandler) //.failureHandler(authFailureHandler)
-	  // /members/login-> /index濡� 怨�爾ㅼ�� ��以��� �ㅼ�� 濡�洹몄�몄�쇰� �댁�쇳��
 	  .permitAll();
 		 
 		http.logout()

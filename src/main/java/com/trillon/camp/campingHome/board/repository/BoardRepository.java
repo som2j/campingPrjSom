@@ -40,7 +40,6 @@ public interface BoardRepository {
             "select * from (select * from campinghome_board a inner join campinghome_imagefile b on a.bd_idx = b.gn_idx)f " +
             "inner join thumbnail t on f.file_idx = t.poster " +
             "order by gn_idx desc limit #{start}, #{cntPerPage}")
-    @Select("select * from test order by campingIdx desc limit #{start}, #{cntPerPage}")
     List<Board> selectBoardList(Paging paging);
 
 

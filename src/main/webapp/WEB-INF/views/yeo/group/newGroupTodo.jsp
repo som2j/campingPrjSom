@@ -25,8 +25,6 @@ Button {
 	<form id="form">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="groupIdx"  name="groupIdx" value="${groupIdx}"/>
-	<div id="groupIdx">${groupIdx}</div>
-	<div id="form">
 		일정 이름 <input type="text" name="title" id="title" maxlength="20"><br><br>
 		시작 날짜 <input type="date" name="dateStart" id="date"><br><br>
 		종료 날짜 <input type="date" name="dateEnd" id="dateEnd"><br><br>
@@ -37,8 +35,4 @@ Button {
 	</div>
 </body>
 <script defer src="${context}/resources/assets/js/group/MyGroupTodo.js"></script> 
-	</div>
-	</div>
-</body>
-<script defer src="${context}/resources/assets/js/group/MyGroupTodo.js"></script>
 </html>

@@ -55,7 +55,6 @@
     border-color: #000;
 }
 .content{
-	font-size : large;
    font-size : large;
 }
 
@@ -103,38 +102,6 @@
 				<span>삭제</span>
 			</button>
 		</form>
-   <div class="content">
-         <div class=" row">
-            <div class="col-6 col-12-large">
-               <c:forEach items="${files}" var="files">
-                  <tr>
-                     <td>
-                        <img src="/storage/${files.groupName}/${files.savePath}${files.renameFileName}" width="400px" height="300px">
-                        <br>
-                     </td>
-                  </tr>
-               </c:forEach>
-               <br>
-            </div>
-            </div>
-
-         <tr>
-            <td>인원수 : ${boardList.numOfPerson}<br></td>
-            <td>장소 : ${boardList.place}<br></td>
-            <td>모집 연령층 : ${boardList.ageAverage}<br></td>
-            <td>캠핑 방식 : ${boardList.campingWay}<br><br></td>
-         </tr>
-            <pre>${boardList.content}</pre>
-         <br>         
-   </div>
-   <div class="row " style="flex-direction: row; padding-left: 20px;">
-   
-      <form action="/comewithme/remove" method="get">
-         <input type="hidden" value="${boardList.bdIdx}" name="bdIdx">
-         <button id="btnDel" class="leftbutton">
-            <span>삭제</span>
-         </button>
-      </form>
 
       <form action="/comewithme/memberInsert" method="post">
          <input type="hidden" value="${boardList.bdIdx}" name="bdIdx"/> 
@@ -159,15 +126,6 @@
 	</div>
 	</c:if>
 	</div>
-   </div>
-   
-   <c:if test="${not empty msg}">
-   <div class="alert alert-danger" role="alert">
-       ${msg}
-   </div>
-   </c:if>
-   </div>
-
 
    <!-- Scripts -->
    <%@ include file="/WEB-INF/views/include/commonScripts.jsp"%>
